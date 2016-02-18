@@ -9,6 +9,7 @@ Included items are:
 - sickrage
 - syncthing
 - plex
+- openvpn
 
 The front-end reverse proxy routes based on the lowest level subdomain (e.g.
 `rtorrent.example.com` would route to rtorrent). Since this is how the router
@@ -21,9 +22,15 @@ through the reverse proxy. You will have to sign in with your plex.tv account
 if you do this.
 
 ## Running
+
+First, you need to create the network `seedbox` to allow containers to communicate between
+each others.
+
+    $ docker network create seedbox
+
 ```sh
 $ docker-compose pull
-$ docker-compose up -d
+$ docker-compose --x-networking up -d
 ```
 Make sure you install the dependencies and finish configuration before doing
 this.
@@ -46,7 +53,9 @@ certificates for you.
 
 ## Where is my data?
 All data are saved in the docker volumes `seedbox_config` or
-`seedbox_torrents`.
+`seedbox_torrents`.  
+You can also replace these docker volumes with static path if you want to handle manually
+where files are stored on your server.
 
 ## OpenVPN
 The OpenVPN container generates a single client key/cert pair by default.
