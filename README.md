@@ -9,7 +9,6 @@ Included items are:
 - sickrage
 - syncthing
 - plex
-- openvpn
 
 The front-end reverse proxy routes based on the lowest level subdomain (e.g.
 `rtorrent.example.com` would route to rtorrent). Since this is how the router
@@ -30,7 +29,7 @@ each others.
 
 ```sh
 $ docker-compose pull
-$ docker-compose --x-networking up -d
+$ docker-compose up -d
 ```
 Make sure you install the dependencies and finish configuration before doing
 this.
