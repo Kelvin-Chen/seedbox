@@ -52,16 +52,6 @@ services:
         env_file:
             - config
 
-    sickrage:
-        image: kelvinchen/seedbox:sickrage
-        build: Dockerfiles/sickrage
-        restart: always
-        networks:
-            - main
-        volumes:
-            - config:/config
-            - torrents:/torrents
-
     sonarr:
         image: kelvinchen/seedbox:sonarr
         build: Dockerfiles/sonarr

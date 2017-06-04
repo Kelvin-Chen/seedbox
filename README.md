@@ -6,7 +6,6 @@ seedbox and personal media server.
 Go to `x.hostname` where `x` is the service you want to access.
 Included services are:
 - rtorrent
-- sickrage
 - sonarr
 - jackett (included in the sonarr image)
 - syncthing
