@@ -2,6 +2,9 @@ USERNAME=username
 PASSWORD=hunter2
 USE_SSL=false
 
+# Set timezone for Sonarr since mono will throw an error without it
+TZ=US/Eastern
+
 # For Plex Pass download
 PLEX_EMAIL=
 PLEX_PASSWORD=
