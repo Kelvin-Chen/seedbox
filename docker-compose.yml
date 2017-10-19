@@ -51,6 +51,9 @@ services:
             - torrents:/torrents
         env_file:
             - config
+        devices:
+            - /dev/dri:/dev/dri
+        privileged: true
 
     sonarr:
         image: kelvinchen/seedbox:sonarr
