@@ -36,9 +36,6 @@ does not, verify that your docker and docker-compose version is updated.
 Make sure you install the dependencies and finish configuration before doing
 this.
 
-You may optionally build the images yourself instead of pulling by running
-`./build-all.sh`.
-
 ## Configuration
 Copy the `config.default` file to `config` and change the variables as desired.
 The variables are all self-explanatory.
