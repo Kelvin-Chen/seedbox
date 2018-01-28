@@ -29,7 +29,7 @@ RUN ln -s /config/rtorrent/rtorrent.rc ~/.rtorrent.rc \
         /opt/rutorrent \
     && sed -i "s/www-data/root/g" /etc/php/7.0/fpm/pool.d/www.conf
 
-VOLUME /config /torrents
+VOLUME /config /data
 
 EXPOSE 80 49161 49161/udp 6881/udp
 

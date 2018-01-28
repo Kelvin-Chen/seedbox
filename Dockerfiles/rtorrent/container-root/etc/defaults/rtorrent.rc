@@ -2,7 +2,7 @@
 
 scgi_local = /var/run/rtorrent.sock
 
-directory = /torrents
+directory = /data
 session   = /config/rtorrent
 
 # Maximum and minimum number of peers to connect to per torrent.

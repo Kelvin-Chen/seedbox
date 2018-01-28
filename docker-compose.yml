@@ -6,7 +6,7 @@ networks:
 volumes:
     config:
         driver: local
-    torrents:
+    data:
         driver: local
 
 services:
@@ -36,7 +36,7 @@ services:
             - "6881:6881/udp"
         volumes:
             - config:/config
-            - torrents:/torrents
+            - data:/data
 
     plex:
         image: kelvinchen/seedbox:plex
@@ -48,7 +48,7 @@ services:
             - "32400:32400"
         volumes:
             - config:/config
-            - torrents:/torrents
+            - data:/data
         env_file:
             - config
         devices:
@@ -63,7 +63,7 @@ services:
             - main
         volumes:
             - config:/config
-            - torrents:/torrents
+            - data:/data
         env_file:
             - config
 
@@ -78,7 +78,7 @@ services:
             - "21027:21027/udp"
         volumes:
             - config:/config
-            - torrents:/torrents
+            - data:/data
 
     openvpn:
         image: kelvinchen/seedbox:openvpn
@@ -90,7 +90,7 @@ services:
             - "1194:1194/udp"
         volumes:
             - config:/config
-            - torrents:/torrents
+            - data:/data
         cap_add:
             - NET_ADMIN
         sysctls:
