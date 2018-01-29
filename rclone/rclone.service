@@ -1,0 +1,15 @@
+[Unit]
+Description=rclone encrypted cloud drive
+Documentation=http://rclone.org/docs/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/bin/rclone mount --allow-non-empty --allow-other gcrypt: /mnt/gcrypt
+ExecStop=/usr/bin/fusermount -uz /mnt/gcrypt
+
+[Install]
+WantedBy=docker.service
