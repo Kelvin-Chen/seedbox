@@ -1,0 +1,21 @@
+[Unit]
+Description=Plexdrive mount
+Documentation=https://github.com/dweidenfeld/plexdrive
+After=network-online.target
+Requires=network-online.target
+PropagatesReloadTo=rclone.service unionfs.service
+AssertPathIsDirectory=/mnt/.plexdrive
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/local/bin/plexdrive mount -v 1 --cache-file=/home/cloud/cache -o allow_other /mnt/.plexdrive
+ExecStop=/usr/bin/fusermount -uz /mnt/.plexdrive
+Restart=always
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target

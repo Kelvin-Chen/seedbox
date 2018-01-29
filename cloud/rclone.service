@@ -1,0 +1,22 @@
+[Unit]
+Description=Rclone crypt mount
+Documentation=http://rclone.org/docs/
+After=plexdrive.service
+Requires=plexdrive.service
+PropagatesReloadTo=unionfs.service
+PartOf=plexdrive.service
+AssertPathIsDirectory=/mnt/cloud
+
+[Service]
+Type=notify
+User=root
+Group=root
+ExecStart=/usr/bin/rclone mount  --allow-other plexdrivecrypt: /mnt/cloud
+ExecStop=/usr/bin/fusermount -uz /mnt/cloud
+Restart=always
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target

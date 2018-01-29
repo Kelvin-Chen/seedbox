@@ -2,14 +2,14 @@
 Description=UnionFS mount
 After=rclone.service
 Requires=rclone.service
-PartOf=rclone.service
+PartOf=plexdrive.service
 AssertPathIsDirectory=/mnt/union
 
 [Service]
 Type=forking
 User=root
 Group=root
-ExecStart=/usr/local/bin/unionfs -o max_files=32768,cow,allow_other,direct_io,auto_cache,sync_read /home/data=RW:/mnt/gcrypt=RO /mnt/union
+ExecStart=/usr/local/bin/unionfs -o max_files=32768,cow,allow_other,direct_io,auto_cache,sync_read /home/cloud/localdata=RW:/mnt/cloud=RO /mnt/union
 ExecStop=/usr/bin/fusermount -uz /mnt/union
 Restart=always
 RestartSec=5
@@ -17,4 +17,5 @@ StartLimitInterval=60s
 StartLimitBurst=5
 
 [Install]
-WantedBy=docker.service
+WantedBy=default.target
+RequiredBy=docker.service
