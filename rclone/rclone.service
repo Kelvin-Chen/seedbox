@@ -1,15 +1,21 @@
 [Unit]
-Description=rclone encrypted cloud drive
+Description=Rclone cloud mount
 Documentation=http://rclone.org/docs/
 After=network-online.target
 Wants=network-online.target
+PropagatesReloadTo=unionfs.service
+AssertPathIsDirectory=/mnt/gcrypt
 
 [Service]
-Type=simple
+Type=notify
 User=root
 Group=root
 ExecStart=/usr/bin/rclone mount --allow-non-empty --allow-other gcrypt: /mnt/gcrypt
 ExecStop=/usr/bin/fusermount -uz /mnt/gcrypt
+Restart=always
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=5
 
 [Install]
 WantedBy=docker.service

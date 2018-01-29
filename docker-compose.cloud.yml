@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  rtorrent:
+    volumes:
+      - /mnt/union:/cloud
+
+  plex:
+    volumes:
+      - /mnt/union:/cloud
+
+  sonarr:
+    volumes:
+      - /mnt/union:/cloud
+
+  syncthing:
+    volumes:
+      - /mnt/union:/cloud
