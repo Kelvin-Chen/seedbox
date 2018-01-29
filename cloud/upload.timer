@@ -1,0 +1,8 @@
+[Unit]
+Description=Upload from local storage to cloud mount once every day
+
+[Timer]
+OnCalendar=*-*-* 05:00:00
+
+[Install]
+WantedBy=timers.target

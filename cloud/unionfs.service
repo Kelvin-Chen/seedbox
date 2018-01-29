@@ -9,7 +9,7 @@ AssertPathIsDirectory=/mnt/union
 Type=forking
 User=root
 Group=root
-ExecStart=/usr/local/bin/unionfs -o max_files=32768,cow,allow_other,direct_io,auto_cache,sync_read /home/cloud/localdata=RW:/mnt/cloud=RO /mnt/union
+ExecStart=/usr/local/bin/unionfs -o max_files=32768,cow,allow_other,direct_io,sync_read /home/cloud/localdata=RW:/mnt/cloud=RW /mnt/union
 ExecStop=/usr/bin/fusermount -uz /mnt/union
 Restart=always
 RestartSec=5

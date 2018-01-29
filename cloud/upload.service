@@ -1,0 +1,8 @@
+[Unit]
+Description=Upload from local storage to cloud mount
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+ExecStart=/usr/bin/rclone move /home/cloud/localdata/ gcrypt: --delete-after --min-age 10m
