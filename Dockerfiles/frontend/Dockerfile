@@ -1,4 +1,4 @@
-FROM nginx:1.11-alpine
+FROM nginx:1.13-alpine
 MAINTAINER Kelvin Chen <kelvin@kelvinchen.org>
 
 RUN apk add --no-cache apache2-utils openssl
