@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "userlist users
+    user $USERNAME insecure-password $PASSWORD
+" > /usr/local/etc/haproxy/auth.cfg
+
+exec haproxy -W -db -f /usr/local/etc/haproxy/auth.cfg -f /usr/local/etc/haproxy/haproxy.cfg

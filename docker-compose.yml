@@ -1,97 +1,87 @@
 version: '3'
 
 networks:
-    main:
+  main:
 
 volumes:
-    config:
-        driver: local
-    data:
-        driver: local
+  config:
+    driver: local
+  data:
+    driver: local
 
 services:
-    frontend:
-        image: kelvinchen/seedbox:frontend
-        build: Dockerfiles/frontend
-        restart: always
-        networks:
-            - main
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - config:/config
-        env_file:
-            - config
 
-    rtorrent:
-        image: kelvinchen/seedbox:rtorrent
-        build: Dockerfiles/rtorrent
-        restart: always
-        networks:
-            - main
-        ports:
-            - "49161:49161"
-            - "49161:49161/udp"
-            - "6881:6881/udp"
-        volumes:
-            - config:/config
-            - data:/data
+  proxy:
+    image: kelvinchen/seedbox:latest
+    build: .
+    restart: always
+    networks:
+    - main
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+    - config:/config
+    env_file:
+    - config
 
-    plex:
-        image: kelvinchen/seedbox:plex
-        build: Dockerfiles/plex
-        restart: always
-        networks:
-            - main
-        ports:
-            - "32400:32400"
-        volumes:
-            - config:/config
-            - data:/data
-        env_file:
-            - config
-        devices:
-            - /dev/dri:/dev/dri
-        privileged: true
+  rtorrent:
+    image: kelvinchen/rtorrent:latest
+    restart: always
+    networks:
+    - main
+    ports:
+    - "49161:49161"
+    - "49161:49161/udp"
+    - "6881:6881/udp"
+    volumes:
+    - config:/config
+    - data:/data
+    env_file:
+    - config
 
-    sonarr:
-        image: kelvinchen/seedbox:sonarr
-        build: Dockerfiles/sonarr
-        restart: always
-        networks:
-            - main
-        volumes:
-            - config:/config
-            - data:/data
-        env_file:
-            - config
+  plex:
+    image: kelvinchen/plex:latest
+    restart: always
+    networks:
+    - main
+    ports:
+    - "32400:32400"
+    volumes:
+    - config:/config
+    - data:/data
+    env_file:
+    - config
+    devices:
+    - /dev/dri:/dev/dri
+    privileged: true
 
-    syncthing:
-        image: kelvinchen/seedbox:syncthing
-        build: Dockerfiles/syncthing
-        restart: always
-        networks:
-            - main
-        ports:
-            - "22000:22000"
-            - "21027:21027/udp"
-        volumes:
-            - config:/config
-            - data:/data
+  media-manager:
+    image: kelvinchen/media-manager:latest
+    restart: always
+    networks:
+    - main
+    volumes:
+    - config:/config
+    - data:/data
+    env_file:
+    - config
 
-    openvpn:
-        image: kelvinchen/seedbox:openvpn
-        build: Dockerfiles/openvpn
-        restart: always
-        networks:
-            - main
-        ports:
-            - "1194:1194/udp"
-        volumes:
-            - config:/config
-            - data:/data
-        cap_add:
-            - NET_ADMIN
-        sysctls:
-            - net.ipv6.conf.all.disable_ipv6=0
+  openvpn:
+    image: kelvinchen/openvpn:latest
+    restart: always
+    networks:
+    - main
+    ports:
+    - "1194:1194/udp"
+    volumes:
+    - config:/config
+    - data:/data
+    env_file:
+    - config
+    cap_add:
+    - NET_ADMIN
+    sysctls:
+    - net.ipv6.conf.all.disable_ipv6=0
+    - net.ipv6.conf.default.forwarding=1
+    - net.ipv6.conf.all.forwarding=1

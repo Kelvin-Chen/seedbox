@@ -4,16 +4,12 @@ services:
 
   rtorrent:
     volumes:
-      - /mnt/union:/cloud
+    - /mnt/union:/cloud
 
   plex:
     volumes:
-      - /mnt/union:/cloud
+    - /mnt/union:/cloud
 
-  sonarr:
+  media-manager:
     volumes:
-      - /mnt/union:/cloud
-
-  syncthing:
-    volumes:
-      - /mnt/union:/cloud
+    - /mnt/union:/cloud

@@ -1,10 +1,10 @@
-USERNAME=username
-PASSWORD=hunter2
+# Web interface settings
+USERNAME=user
+PASSWORD=pass
 USE_SSL=false
 
-# Set timezone for Sonarr since mono will throw an error without it
+# Set timezone
 TZ=US/Eastern
 
 # For Plex Pass download
-PLEX_EMAIL=
-PLEX_PASSWORD=
+PLEX_TOKEN=
