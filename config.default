@@ -1,7 +1,6 @@
 # Web interface settings
 USERNAME=user
 PASSWORD=pass
-USE_SSL=false
 
 # Set timezone
 TZ=US/Eastern

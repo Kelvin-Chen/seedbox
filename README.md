@@ -13,7 +13,7 @@ This project helps you run a seedbox and media server in Docker.
 
 ## Dependencies
 - [Docker](https://github.com/docker/docker) >= 1.13.0
-- [Docker Compose](https://github.com/docker/compose) >=v1.10.0
+- [Docker Compose](https://github.com/docker/compose) >= 1.10.0
 
 ## Quickstart
 
