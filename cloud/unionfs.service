@@ -2,14 +2,13 @@
 Description=UnionFS mount
 After=rclone.service
 Requires=rclone.service
-PartOf=plexdrive.service
-AssertPathIsDirectory=/mnt/union
+AssertPathIsDirectory=/mnt/cloud
 
 [Service]
 Type=forking
 User=root
 Group=root
-ExecStart=/usr/local/bin/unionfs -o max_files=32768,cow,allow_other,direct_io,sync_read /home/cloud/localdata=RW:/mnt/cloud=RW /mnt/union
+ExecStart=/usr/bin/unionfs -o max_files=65536,cow,allow_other,direct_io,sync_read /data=RW:/mnt/plexdrive=RW /mnt/cloud
 ExecStop=/usr/bin/fusermount -uz /mnt/union
 Restart=always
 RestartSec=5

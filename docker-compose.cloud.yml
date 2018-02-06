@@ -4,12 +4,12 @@ services:
 
   rtorrent:
     volumes:
-    - /mnt/union:/cloud
+    - /mnt/cloud:/cloud
 
   plex:
     volumes:
-    - /mnt/union:/cloud
+    - /mnt/cloud:/cloud
 
   media-manager:
     volumes:
-    - /mnt/union:/cloud
+    - /mnt/cloud:/cloud
