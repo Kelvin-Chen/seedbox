@@ -5,6 +5,7 @@ services:
   rtorrent:
     volumes:
     - /mnt/cloud:/cloud
+    - /data/.downloads:/downloads
 
   plex:
     volumes:
