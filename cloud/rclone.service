@@ -1,16 +1,16 @@
 [Unit]
-Description=Rclone crypt mount
+Description=Rclone mount (gdrive => gcache => gcrypt)
 Documentation=http://rclone.org/docs/
-After=plexdrive.service
-Requires=plexdrive.service
-AssertPathIsDirectory=/mnt/plexdrive
+After=network-online.target
+Requires=network-online.target
+AssertPathIsDirectory=/mnt/.gcrypt
 
 [Service]
 Type=notify
 User=root
 Group=root
-ExecStart=/usr/local/bin/rclone mount --allow-other plexdrivecrypt: /mnt/plexdrive
-ExecStop=/bin/fusermount -uz /mnt/plexdrive
+ExecStart=/usr/local/bin/rclone mount --allow-other --cache-rps 5 --vfs-cache-mode writes gcrypt: /mnt/.gcrypt
+ExecStop=/bin/fusermount -uz /mnt/.gcrypt
 Restart=always
 RestartSec=5
 StartLimitInterval=60s

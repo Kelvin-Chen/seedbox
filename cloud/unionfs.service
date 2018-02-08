@@ -8,8 +8,8 @@ AssertPathIsDirectory=/mnt/cloud
 Type=forking
 User=root
 Group=root
-ExecStart=/usr/bin/unionfs -o max_files=65536,cow,allow_other,direct_io,sync_read /data=RW:/mnt/plexdrive=RW /mnt/cloud
-ExecStop=/usr/bin/fusermount -uz /mnt/union
+ExecStart=/usr/bin/unionfs -o max_files=65536,cow,allow_other,direct_io,sync_read /data=RW:/mnt/.gcrypt=RW /mnt/cloud
+ExecStop=/usr/bin/fusermount -uz /mnt/cloud
 Restart=always
 RestartSec=5
 StartLimitInterval=60s
