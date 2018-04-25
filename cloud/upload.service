@@ -5,4 +5,4 @@ Description=Upload from local storage to cloud mount
 Type=oneshot
 User=root
 Group=root
-ExecStart=/usr/local/bin/rclone move /data/ gcrypt-upload: --delete-after --min-age 5m --exclude /.downloads/
+ExecStart=/usr/bin/rclone move /data/ /mnt/.gcrypt/ --delete-after --min-age 5m --exclude /.downloads/
